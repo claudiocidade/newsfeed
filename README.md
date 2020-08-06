@@ -4,10 +4,10 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 ## Requirements
 
 ### Main Feed - Wireframe
-<img src="/docs/logo.png" alt="My cool logo"/>
+<img src="docs/1.Feed.png" alt="Main Feed"/>
 
 ### Article - Wireframe
-<img src="/docs/logo.png" alt="My cool logo"/>
+<img src="docs/2.Article.png" alt="Article"/>
 
 ### As an user, I would like to...
 [] 1.1. Access a news feed listing at most 30 words of the 5 most recently published news, together with its date, number of comments and a link so I can read the entire article.
