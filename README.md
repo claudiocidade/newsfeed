@@ -32,7 +32,7 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 - [ ] 3.5. Have a bastion host EC2 instance for inspecting the resources deployed in the private subnet.
 
 ## Development Environment
-- [ ] 4.1. An Angular frontend boilerplate.
+- [x] 4.1. An Angular frontend boilerplate.
 - [x] 4.2. A NestJS backend boilerplate.
 - [ ] 4.3. A linting-on-commit local setting. 
 - [ ] 4.4. A testing-on-rebuild local setting.
