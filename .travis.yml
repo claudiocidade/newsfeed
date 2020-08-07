@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t CI=true claudiocidade/newsfeed-server -f ./server/Dockerfile.dev ./server
+  - docker build -t CI=true claudiocidade/newsfeed-server -f Dockerfile.server.dev .
 
 script:
   - docker run claudiocidade/nesfeed-server yarn test
