@@ -17,4 +17,4 @@ RUN ng config --global cli.packageManager yarn
 COPY . .
 
 # start app
-CMD ng serve --hots 0.0.0.0 --port 2000
+# CMD ng serve --hots 0.0.0.0 --port 2000
