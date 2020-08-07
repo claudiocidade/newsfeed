@@ -20,7 +20,7 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 
 ### As a developer, I would like to...
 - [ ] 2.1. Use the least amount of local assets to work on the project.
-- [ ] 2.2. Be able to build/run/test the code locally without requiring any other tool besides docker+compose.  
+- [x] 2.2. Be able to build/run/test the code locally without requiring any other tool besides docker+compose.  
 - [ ] 2.3. Get my changes deployed to the staging environment whenever it is successfuly linted and tested.
 - [ ] 2.4. Recreate the database schema from scratch whenever I need to reset the development environment.
 
@@ -33,7 +33,7 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 
 ## Development Environment
 - [x] 4.1. An Angular frontend boilerplate.
-- [ ] 4.2. A NestJS backend boilerplate.
+- [x] 4.2. A NestJS backend boilerplate.
 - [ ] 4.3. A linting-on-commit local setting. 
 - [ ] 4.4. A testing-on-rebuild local setting.
 - [ ] 4.5. An instance of NGINX serving the frontend.

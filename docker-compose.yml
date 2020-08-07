@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.dev
       context: ./client
     ports:
-      - 4200:4200
+      - 2000:2000
     volumes: 
       # In this line I'm telling docker-compose
       # to use the node_modules folder INSIDE the
@@ -20,3 +20,22 @@ services:
       # the local source code so I can get live reloading
       # for source code that is being changed locally.
       - ./client:/app
+  server:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./server
+    ports:
+      - 3000:3000
+    volumes: 
+      # In this line I'm telling docker-compose
+      # to use the node_modules folder INSIDE the
+      # container instead of trying to map the folder
+      # in my local machine, mainly because it might
+      # not be present locally and the one inside the
+      # container should be the prefered source of 
+      # truth about these dependencies.
+      - /app/node_modules
+      # As for everything else, make sure to reference
+      # the local source code so I can get live reloading
+      # for source code that is being changed locally.
+      - ./server:/app
