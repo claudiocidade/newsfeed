@@ -9,6 +9,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY ./package.json ./
 RUN yarn global add @angular/cli
+RUN yarn global add @angular-devkit/build-angular 
 RUN yarn install
 RUN ng config --global cli.packageManager yarn
 
@@ -16,4 +17,4 @@ RUN ng config --global cli.packageManager yarn
 COPY . .
 
 # start app
-CMD ng serve 
+CMD ng serve --hots 0.0.0.0 --port 2000
