@@ -7,10 +7,10 @@ jobs:
   include:
     - stage: QUALITY_CHECK
       script: ./ci/sh/jobs/quality_check.sh
-      if: '$TRAVIS_PULL_REQUEST == "true" && branch =~ /^(master|production)$/'
+      if: 'branch =~ /^(master|production)$/'
     - stage: IMG_PUSH
       script: ./ci/sh/jobs/image_push.sh
-      if: '$TRAVIS_PULL_REQUEST == "true" && branch =~ /^(master|production)$/'
+      if: 'branch =~ /^(master|production)$/'
     - stage: STG_PLAN
       script: ./ci/sh/jobs/staging_plan.sh
       if: 'branch =~ /^(master|production)$/'
