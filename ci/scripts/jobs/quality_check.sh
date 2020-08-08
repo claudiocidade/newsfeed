@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-export
+echo "STARTING: ${0}"
