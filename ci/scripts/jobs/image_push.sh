@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo "STARTING: ${0}"
-apk add python3
-pip3 install awscli
+sudo apt-get install python3 python3-pip
+sudo pip3 install awscli
 docker build --compress -t $ECR_REPO:$TRAVIS_COMMIT
 $(aws ecr get-login --no-include-email --region us-east-1)
 docker push $ECR_REPO:$TRAVIS_COMMIT
