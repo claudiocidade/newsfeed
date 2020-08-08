@@ -1,0 +1,76 @@
+stages:
+  - QUALITY_CHECK
+  - IMG_PUSH
+  - STG_PLAN
+  - STG_APPLY
+  - PRD_PLAN
+  - PRD_APPLY
+  - DESTROY
+  
+quality_check:
+  image: docker:19.03.5
+  stage: QUALITY_CHECK
+  services:
+    - docker:19.03.5-dind
+  script:
+    - echo "CHECK CODE QUALITY (TEST/LINT)"
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+
+validate_formation:
+  stage: QUALITY_CHECK
+  script:
+    - echo "VALIDATE CLOUD FORMATION SCRIPTS"
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+
+image_push:
+  stage: IMG_PUSH
+  script:
+    - echo "BUILD DOCKER IMAGE AND PUSH IT TO REGISTRY"
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+
+staging_plan:
+  stage: STG_PLAN
+  script:
+    - echo "RUN FORMATION PLAN FOR STAGING"
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+
+staging_apply:
+  stage: STG_APPLY
+  script:
+    - echo "APPLY FORMATION ON STAGING"
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+
+prodution_plan:
+  stage: PRD_PLAN
+  script:
+    - echo "RUN FORMATION PLAN FOR PRODUCTION"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "production"'
+
+production_apply:
+  stage: PRD_APPLY
+  script:
+    - echo "APPLY FORMATION ON PRODUCTION"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "production"'
+
+staging_destroy:
+  stage: DESTROY
+  script:
+    - echo "DESTROY STAGING FORMATION"
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+      when: manual
+
+production_destroy:
+  stage: DESTROY
+  script:
+    - echo "DESTROY STAGING FORMATION"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "production"'
+      when: manual

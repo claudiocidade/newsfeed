@@ -2,11 +2,13 @@ version: '3.3'
 
 services:
   client:
+    environment:
+      - APP_PORT=3000
     build: 
       dockerfile: Dockerfile.dev
       context: ./client
     ports:
-      - 2000:2000
+      - "3000:3000"
     volumes: 
       # In this line I'm telling docker-compose
       # to use the node_modules folder INSIDE the
@@ -21,11 +23,13 @@ services:
       # for source code that is being changed locally.
       - ./client:/app
   server:
+    environment:
+      - APP_PORT=4000
     build: 
       dockerfile: Dockerfile.dev
       context: ./server
     ports:
-      - 3000:3000
+      - "4000:4000"
     volumes: 
       # In this line I'm telling docker-compose
       # to use the node_modules folder INSIDE the
