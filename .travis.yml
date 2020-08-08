@@ -13,7 +13,7 @@ branches:
 env:
   - MXMD_FORMATION_VERSION=0.12.21
 before_install:
-  - cd ./ci/init && sudo formation.sh
+  - cd ./ci/sh/init && sudo formation.sh
 jobs:
   include:
     - stage: QUALITY_CHECK
