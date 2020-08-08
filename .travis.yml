@@ -1,0 +1,28 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: QUALITY_CHECK
+      script: ./ci/sh/jobs/quality_check.sh
+      if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    - stage: IMG_PUSH
+      script: ./ci/sh/jobs/image_push.sh
+      if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    - stage: STG_PLAN
+      script: ./ci/sh/jobs/staging_plan.sh
+      if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    - stage: STG_APPLY
+      script: ./ci/sh/jobs/staging_apply.sh
+      if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    - stage: PRD_PLAN
+      script: ./ci/sh/jobs/production_plan.sh
+      if: '$CI_COMMIT_BRANCH == "production"'
+    - stage: PRD_APPLY
+      script: ./ci/sh/jobs/production_apply.sh
+      if: '$CI_COMMIT_BRANCH == "production"'
+    - stage: DESTROY
+      script: ./ci/sh/jobs/destroy.sh
+      if: '$CI_COMMIT_BRANCH == "production"'
