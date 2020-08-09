@@ -7,7 +7,7 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
-resource "aws_instance" "bastion" {
+resource "aws_instance" "mxmd_bastion" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t2.micro"
   tags = merge(
