@@ -1,4 +1,4 @@
-resource "aws_vpc" "mxmd-vpc" {
+resource "aws_vpc" "mxmd_vpc" {
   # Only 16 addresses (14 hosts) available. 
   # More than necessary for a demo.
   cidr_block           = "10.1.0.0/28"
@@ -8,14 +8,5 @@ resource "aws_vpc" "mxmd-vpc" {
   tags = merge(
     local.common_tags,
     map("Name", "${local.prefix}-vpc")
-  )
-}
-
-resource "aws_internet_gateway" "mxmd-igw" {
-  vpc_id = aws_vpc.main.id
-
-  tags = merge(
-    local.common_tags,
-    map("Name", "${local.prefix}-igw")
   )
 }

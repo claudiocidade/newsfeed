@@ -7,8 +7,9 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
-resource "aws_instance" "bastion" {
+resource "aws_instance" "mxmd_bastion" {
   ami           = data.aws_ami.amazon_linux.id
+  vpc_id        = aws_vpc.mxmd_vpc.id
   instance_type = "t2.micro"
   tags = merge(
     local.common_tags,
