@@ -10,10 +10,8 @@ branches:
   - /(hotfix/).*/
   - /(fix/).*/
   - destroy
-env:
-  - MXMD_FORMATION_VERSION=0.12.21
 before_install:
-  - sh ./ci/scripts/init/formation.sh
+  - sh ./ci/tools/terraform/install.sh 0.12.21
 jobs:
   include:
     - stage: quality_check
