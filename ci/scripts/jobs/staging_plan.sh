@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 echo "STARTING: ${0}"
-sh ./ci/scripts/utils/terraform_plan.sh staging
+sh ./ci/scripts/utils/terraform_exec.sh staging plan
