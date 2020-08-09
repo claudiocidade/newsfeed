@@ -12,6 +12,8 @@ branches:
   - destroy
 env:
   - MXMD_FORMATION_VERSION=0.12.21
+  - MXMD_ECR_REPO_UI="${ECR_REPO_UI}:${TRAVIS_BUILD_ID}"
+  - MXMD_ECR_REPO_API="${ECR_REPO_API}:${TRAVIS_BUILD_ID}"
 before_install:
   - sh ./ci/scripts/init/formation.sh
 jobs:
