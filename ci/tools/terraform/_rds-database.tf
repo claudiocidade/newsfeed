@@ -6,7 +6,7 @@ resource "aws_db_instance" "mxmd_db" {
   engine                  = "postgres"
   engine_version          = "11.4"
   instance_class          = "db.t2.micro"
-  db_subnet_group_name    = aws_db_subnet_group.mxmd_db_sg
+  db_subnet_group_name    = aws_db_subnet_group.mxmd_db_sg.name
   username                = var.db_username
   password                = var.db_password
   backup_retention_period = 0
