@@ -5,6 +5,7 @@ services:
     working_dir: /infra
     volumes:
       - .:/infra
+      - ./../awscf/roles:/roles
       - ./../awscf/policies:/policies
       - ./../../scripts/init:/scripts
     environment:

@@ -37,12 +37,12 @@ resource "aws_security_group" "mxmd_sg" {
   name        = "${local.prefix}-rds-inbound-access"
   description = "Allow access to the RDS database instance"
   vpc_id      = aws_vpc.mxmd_vpc.id
+  tags        = local.common_tags
 
   ingress {
-    protocol  = "tcp"
-    from_port = 5432
-    to_port   = 5432
+    protocol        = "tcp"
+    from_port       = 5432
+    to_port         = 5432
+    security_groups = [aws_security_group.bastion.id]
   }
-
-  tags = local.common_tags
 }
