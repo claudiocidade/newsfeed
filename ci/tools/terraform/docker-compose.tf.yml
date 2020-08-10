@@ -5,7 +5,8 @@ services:
     working_dir: /infra
     volumes:
       - .:/infra
-      - ./../awscf/policies:/infra/policies
+      - ./../awscf/policies:/policies
+      - ./../../scripts/init:/scripts
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
