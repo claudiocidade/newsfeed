@@ -2,6 +2,12 @@
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "newsfeed-AllowContainerRegistryAuthorization",
+      "Effect": "Allow",
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*"
+    },
+    {
       "Sid": "newsfeed-AllowContainerRegistryManagement",
       "Effect": "Allow",
       "Action": "ecr:*",
