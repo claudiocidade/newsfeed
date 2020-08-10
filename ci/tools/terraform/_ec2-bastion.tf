@@ -10,6 +10,7 @@ data "aws_ami" "amazon_linux" {
 resource "aws_instance" "mxmd_bastion" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t2.micro"
+  user_data     = file("./user-data.sh")
   tags = merge(
     local.common_tags,
     map("Name", "${local.prefix}-bastion")
