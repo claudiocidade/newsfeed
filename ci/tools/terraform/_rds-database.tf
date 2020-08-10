@@ -10,8 +10,8 @@ resource "aws_db_instance" "mxmd_db" {
   username                = var.db_username
   password                = var.db_password
   backup_retention_period = 0
-  multi_az                = ! local.debug # Multi-AZ is enabled for production only.
-  skip_final_snapshot     = true          # Avoiding problems when running 'destroy'.
+  multi_az                = !local.debug # Multi-AZ is enabled for production only.
+  skip_final_snapshot     = true         # Avoiding problems when running 'destroy'.
   vpc_security_group_ids  = [aws_security_group.mxmd_sg.id]
 
   tags = merge(
