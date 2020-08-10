@@ -7,6 +7,13 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+resource "aws_iam_role" "bastion" {
+  name               = "${local.prefix}-bastion"
+  assume_role_policy = file("./policies/bastion-ec2.json")
+
+  tags = local.common_tags
+}
+
 resource "aws_instance" "mxmd_bastion" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t2.micro"
