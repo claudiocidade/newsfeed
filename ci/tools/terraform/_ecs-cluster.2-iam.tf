@@ -1,8 +1,3 @@
-resource "aws_ecs_cluster" "mxmd_cluster" {
-  name = "${local.prefix}-cluster"
-  tags = local.common_tags
-}
-
 resource "aws_iam_policy" "task_execution_role_policy" {
   name        = "${local.prefix}-task-exec-role-policy"
   description = "Allow retrieving of images and adding to logs"

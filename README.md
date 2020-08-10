@@ -39,7 +39,7 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 - [ ] 4.3. A linting-on-commit local setting. 
 - [ ] 4.4. A testing-on-rebuild local setting.
 - [ ] 4.5. An instance of NGINX serving the frontend.
-- [ ] 4.6. An instance of PostgreSQL for the backend.
+- [x] 4.6. An instance of PostgreSQL for the backend.
 - [x] 4.7. An instance of DynamoDB for terraform locks.
 - [x] 4.8. A S3 bucket for storing terraform state.
 - [ ] 4.9. A load-balancer for blue/green deployments.
