@@ -7,7 +7,7 @@ resource "aws_iam_policy" "task_execution_role_policy" {
 
 resource "aws_iam_role" "task_execution_role" {
   name               = "${local.prefix}-task-exec-role"
-  assume_role_policy = file("./aws/policies/cluster-ecr.json")
+  assume_role_policy = file("./aws/roles/cluster-ecr.json")
 }
 
 resource "aws_iam_role_policy_attachment" "task_execution_role" {
@@ -17,5 +17,6 @@ resource "aws_iam_role_policy_attachment" "task_execution_role" {
 
 resource "aws_iam_role" "app_iam_role" {
   name               = "${local.prefix}-api-task"
-  assume_role_policy = file("./aws/policies/cluster-ecr.json")
+  assume_role_policy = file("./aws/roles/cluster-ecr.json")
+  tags = local.common_tags
 }

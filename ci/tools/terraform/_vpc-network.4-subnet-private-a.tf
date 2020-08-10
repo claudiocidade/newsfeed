@@ -1,5 +1,5 @@
 resource "aws_subnet" "private_a" {
-  cidr_block        = "10.1.10.0/29"
+  cidr_block        = "10.1.10.0/24"
   vpc_id            = aws_vpc.mxmd_vpc.id
   availability_zone = "${data.aws_region.current.name}a"
 

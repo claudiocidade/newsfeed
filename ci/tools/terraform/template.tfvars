@@ -1,2 +1,2 @@
-db_username = "newsfeed-application"
+db_username = "newsfeed"
 db_password = "changeme"
