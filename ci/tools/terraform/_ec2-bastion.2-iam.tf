@@ -1,6 +1,6 @@
 resource "aws_iam_role" "bastion" {
   name               = "${local.prefix}-bastion"
-  assume_role_policy = file("../roles/bastion-ec2.json")
+  assume_role_policy = file("./aws/roles/bastion-ec2.json")
   tags               = local.common_tags
 }
 

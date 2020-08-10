@@ -9,6 +9,12 @@
         "s3:PutObject"
       ],
       "Resource": "arn:aws:s3:::newsfeed-tf-state/*"
+    },
+    {
+      "Sid": "newsfeed-AllowStorageListing",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::newsfeed-tf-state"
     }
   ]
 }

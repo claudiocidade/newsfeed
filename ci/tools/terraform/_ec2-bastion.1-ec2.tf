@@ -10,7 +10,7 @@ data "aws_ami" "amazon_linux" {
 resource "aws_instance" "mxmd_bastion" {
   ami                  = data.aws_ami.amazon_linux.id
   instance_type        = "t2.micro"
-  user_data            = file("../scripts/user-data.sh")
+  user_data            = file("./aws/init/user-data.sh")
   iam_instance_profile = aws_iam_instance_profile.bastion.name
   key_name             = var.bastion_key
   # Swap the commented subnet config
