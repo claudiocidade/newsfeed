@@ -6,71 +6,69 @@ stages:
   - PRD_PLAN
   - PRD_APPLY
   - DESTROY
-  
+before_script:
+  - chmod +x $(find ./ci -name *.sh)
+  - ./ci/tools/terraform/install.sh 0.12.21
+
 quality_check:
-  image: docker:19.03.5
   stage: QUALITY_CHECK
-  services:
-    - docker:19.03.5-dind
   script:
-    - echo "CHECK CODE QUALITY (TEST/LINT)"
+    - ./ci/scripts/jobs/quality_check.sh
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    # - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 validate_formation:
   stage: QUALITY_CHECK
   script:
-    - echo "VALIDATE CLOUD FORMATION SCRIPTS"
+    - ./ci/scripts/jobs/formation_check.sh
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    # - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 image_push:
+  image: docker:19.03.5
+  services:
+    - docker:19.03.5-dind
   stage: IMG_PUSH
   script:
-    - echo "BUILD DOCKER IMAGE AND PUSH IT TO REGISTRY"
+    - ./ci/scripts/jobs/image_push.sh
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 staging_plan:
+  image: docker:19.03.5
+  services:
+    - docker:19.03.5-dind
   stage: STG_PLAN
   script:
-    - echo "RUN FORMATION PLAN FOR STAGING"
+    - ./ci/scripts/jobs/staging_plan.sh
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 staging_apply:
   stage: STG_APPLY
   script:
-    - echo "APPLY FORMATION ON STAGING"
+    - ./ci/scripts/jobs/staging_apply.sh
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 prodution_plan:
   stage: PRD_PLAN
   script:
-    - echo "RUN FORMATION PLAN FOR PRODUCTION"
+    - ./ci/scripts/jobs/production_plan.sh
   rules:
     - if: '$CI_COMMIT_BRANCH == "production"'
 
 production_apply:
   stage: PRD_APPLY
   script:
-    - echo "APPLY FORMATION ON PRODUCTION"
+    - ./ci/scripts/jobs/production_apply.sh
   rules:
     - if: '$CI_COMMIT_BRANCH == "production"'
 
 staging_destroy:
   stage: DESTROY
   script:
-    - echo "DESTROY STAGING FORMATION"
+    - ./ci/scripts/jobs/destroy.sh
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
-      when: manual
-
-production_destroy:
-  stage: DESTROY
-  script:
-    - echo "DESTROY STAGING FORMATION"
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "production"'
+    - if: '$CI_COMMIT_BRANCH == "destroy"'
       when: manual

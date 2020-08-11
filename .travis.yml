@@ -11,7 +11,8 @@ branches:
   - production      # 5 - released unified code
   - destroy         # 6 - decomissioned code
 before_install:
-  - sh ./ci/tools/terraform/install.sh 0.12.21
+  - chmod +x $(find ./ci -name *.sh)
+  - ./ci/tools/terraform/install.sh 0.12.21
 jobs:
   include:
     - stage: QUALITY_CHECK
@@ -32,12 +33,12 @@ jobs:
     - stage: STG_PLAN
       # VALIDATE CLOUD FORMATION PLAN FOR STAGING
       script: ./ci/scripts/jobs/staging_plan.sh
-      if: 'type IN (push) branch =~ /^(master|production)$/'
+      if: 'type IN (push) and branch =~ /^(master|production)$/'
 
     - stage: STG_APPLY
       # APPLY CLOUD FORMATION PLAN FOR STAGING
       script: ./ci/scripts/jobs/staging_apply.sh
-      if: 'type IN (push) branch =~ /^(master|production)$/'
+      if: 'type IN (push) and branch =~ /^(master|production)$/'
 
     - stage: PRD_PLAN
       # VALIDATE CLOUD FORMATION PLAN FOR PRODUCTION
