@@ -11,7 +11,7 @@ branches:
   - production      # 5 - released unified code
   - destroy         # 6 - decomissioned code
 before_install:
-  - chmod +x $(./ci -name *.sh)
+  - chmod +x $(find ./ci -name *.sh)
   - ./ci/tools/terraform/install.sh 0.12.21
 jobs:
   include:
