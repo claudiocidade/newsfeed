@@ -32,12 +32,12 @@ jobs:
     - stage: STG_PLAN
       # VALIDATE CLOUD FORMATION PLAN FOR STAGING
       script: ./ci/scripts/jobs/staging_plan.sh
-      if: 'branch =~ /^(master|production)$/'
+      if: 'type IN (push) branch =~ /^(master|production)$/'
 
     - stage: STG_APPLY
       # APPLY CLOUD FORMATION PLAN FOR STAGING
       script: ./ci/scripts/jobs/staging_apply.sh
-      if: 'branch =~ /^(master|production)$/'
+      if: 'type IN (push) branch =~ /^(master|production)$/'
 
     - stage: PRD_PLAN
       # VALIDATE CLOUD FORMATION PLAN FOR PRODUCTION
