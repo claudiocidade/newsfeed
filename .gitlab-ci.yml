@@ -10,19 +10,17 @@ stages:
 quality_check:
   image: docker:19.03.5
   stage: QUALITY_CHECK
-  services:
-    - docker:19.03.5-dind
   script:
     - ./ci/scripts/jobs/quality_check.sh
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 validate_formation:
   stage: QUALITY_CHECK
   script:
     - ./ci/scripts/jobs/formation_check.sh
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 image_push:
   stage: IMG_PUSH

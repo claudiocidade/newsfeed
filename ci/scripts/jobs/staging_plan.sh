@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 echo "STARTING: ${0}"
-bash ./ci/scripts/utils/terraform_initenv.sh
-bash ./ci/scripts/utils/terraform_exec.sh staging plan
+chmod +x ./ci/scripts/utils/*.sh
+./ci/scripts/utils/terraform_initenv.sh
+./ci/scripts/utils/terraform_exec.sh staging plan
