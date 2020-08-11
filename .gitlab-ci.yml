@@ -8,9 +8,8 @@ stages:
   - DESTROY
 before_script:
   - ./ci/tools/terraform/install.sh 0.12.21
-  
+
 quality_check:
-  image: docker:19.03.5
   stage: QUALITY_CHECK
   script:
     - ./ci/scripts/jobs/quality_check.sh
