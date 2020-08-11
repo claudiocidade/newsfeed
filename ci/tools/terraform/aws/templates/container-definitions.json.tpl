@@ -27,7 +27,7 @@
         "mountPoints": [
             {
                 "readOnly": false,
-                "containerPath": "/vol/web",
+                "containerPath": "/app",
                 "sourceVolume": "static"
             }
         ]
@@ -40,6 +40,13 @@
             {
                 "containerPort": 8000,
                 "hostPort": 8000
+            }
+        ],
+        "mountPoints": [
+            {
+                "readOnly": false,
+                "containerPath": "/app",
+                "sourceVolume": "static"
             }
         ],
         "memoryReservation": 256,
@@ -55,13 +62,6 @@
                 "awslogs-region": "${log_group_region}",
                 "awslogs-stream-prefix": "proxy"
             }
-        },
-        "mountPoints": [
-            {
-                "readOnly": true,
-                "containerPath": "/vol/static",
-                "sourceVolume": "static"
-            }
-        ]
+        }
     }
 ]
