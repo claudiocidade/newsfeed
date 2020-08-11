@@ -10,11 +10,12 @@ terraform {
 
 provider "aws" {
   region  = "us-east-1"
-  version = "~> 3.0"
+  version = "~> 2.44.0"
 }
 
 locals {
   prefix = "${var.prefix}-${terraform.workspace}"
+  debug  = terraform.workspace != "production"
   common_tags = {
     Environment = terraform.workspace
     Project     = var.project

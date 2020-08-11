@@ -1,5 +1,5 @@
 resource "aws_subnet" "public_a" {
-  cidr_block              = "10.1.1.0/29"
+  cidr_block              = "10.1.1.0/24"
   map_public_ip_on_launch = true
   vpc_id                  = aws_vpc.mxmd_vpc.id
   availability_zone       = "${data.aws_region.current.name}a"

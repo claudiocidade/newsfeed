@@ -1,7 +1,7 @@
 resource "aws_subnet" "private_b" {
-  cidr_block              = "10.1.20.0/29"
-  vpc_id                  = aws_vpc.mxmd_vpc.id
-  availability_zone       = "${data.aws_region.current.name}a"
+  cidr_block        = "10.1.20.0/24"
+  vpc_id            = aws_vpc.mxmd_vpc.id
+  availability_zone = "${data.aws_region.current.name}b"
 
   tags = merge(
     local.common_tags,
