@@ -6,6 +6,8 @@ stages:
   - PRD_PLAN
   - PRD_APPLY
   - DESTROY
+before_script:
+  - ./ci/tools/terraform/install.sh 0.12.21
   
 quality_check:
   image: docker:19.03.5
@@ -13,28 +15,28 @@ quality_check:
   script:
     - ./ci/scripts/jobs/quality_check.sh
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
+    # - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 validate_formation:
   stage: QUALITY_CHECK
   script:
     - ./ci/scripts/jobs/formation_check.sh
   rules:
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
+    # - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 image_push:
   stage: IMG_PUSH
   script:
     - ./ci/scripts/jobs/image_push.sh
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 staging_plan:
   stage: STG_PLAN
   script:
     - ./ci/scripts/jobs/staging_plan.sh
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 staging_apply:
   stage: STG_APPLY
