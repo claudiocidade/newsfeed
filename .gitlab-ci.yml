@@ -25,6 +25,9 @@ validate_formation:
     # - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 image_push:
+  image: docker:19.03.5
+  services:
+    - docker:19.03.5-dind
   stage: IMG_PUSH
   script:
     - ./ci/scripts/jobs/image_push.sh
@@ -32,6 +35,9 @@ image_push:
     # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 staging_plan:
+  image: docker:19.03.5
+  services:
+    - docker:19.03.5-dind
   stage: STG_PLAN
   script:
     - ./ci/scripts/jobs/staging_plan.sh
