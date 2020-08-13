@@ -43,12 +43,12 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 - [x] 4.2. A NestJS backend boilerplate.
 - [ ] 4.3. A linting-on-commit local setting. 
 - [ ] 4.4. A testing-on-rebuild local setting.
-- [ ] 4.5. An instance of NGINX serving the frontend.
+- [x] 4.5. An instance of NGINX serving the frontend.
 - [x] 4.6. An instance of PostgreSQL for the backend.
 - [x] 4.7. An instance of DynamoDB for terraform locks.
 - [x] 4.8. A S3 bucket for storing terraform state.
 - [x] 4.9. A load-balancer for blue/green deployments.
-- [ ] 4.10. A reverse proxy in front of the web applications.
+- [x] 4.10. A reverse proxy in front of the web applications.
 - [x] 4.11. A private subnet where the cluster will reside.
 - [x] 4.12. A public subnet where the load balancer/reverse proxy will reside.
 - [x] 4.13. A bastion server I will use to get access to resources in the private subnet.
