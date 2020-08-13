@@ -36,7 +36,7 @@ image_push:
   script:
     - ./ci/scripts/jobs/image_push.sh
   rules:
-    # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
+    - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 staging_plan:
   stage: STG_PLAN
