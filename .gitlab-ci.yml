@@ -8,10 +8,6 @@ stages:
   - DESTROY
 before_script:
   - chmod +x $(find ./ci -name *.sh)
-  - apk update && apk add bash && apk add sudo
-  - apk add python3
-  - pip3 install awscli
-  - alias apt-get=apk
   - ./ci/tools/terraform/install.sh 0.12.21
 
 quality_check:
@@ -34,6 +30,10 @@ image_push:
     - docker:19.03.5-dind
   stage: IMG_PUSH
   script:
+    - apk update && apk add bash && apk add sudo
+    - apk add python3
+    - pip3 install awscli
+    - alias apt-get=apk
     - ./ci/scripts/jobs/image_push.sh
   rules:
     # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
