@@ -9,6 +9,9 @@ stages:
 before_script:
   - chmod +x $(find ./ci -name *.sh)
   - apk update && apk add bash && apk add sudo
+  - apk add python3
+  - pip3 install awscli
+  - alias apt-get=apk
   - ./ci/tools/terraform/install.sh 0.12.21
 
 quality_check:
