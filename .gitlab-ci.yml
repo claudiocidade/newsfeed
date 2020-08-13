@@ -1,3 +1,8 @@
+
+default:
+  image: docker:19.03.5
+  services:
+    - docker:19.03.5-dind
 stages:
   - QUALITY_CHECK
   - IMG_PUSH
@@ -7,8 +12,10 @@ stages:
   - PRD_APPLY
   - DESTROY
 before_script:
-  - chmod +x $(find ./ci -name *.sh)
-  - ./ci/tools/terraform/install.sh 0.12.21
+    - chmod +x $(find ./ci -name *.sh)
+    - apk update
+    - apk add bash sudo python3
+    - ./ci/tools/terraform/install.sh 0.12.21
 
 quality_check:
   stage: QUALITY_CHECK
@@ -25,23 +32,13 @@ validate_formation:
     # - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
 
 image_push:
-  image: docker:19.03.5
-  services:
-    - docker:19.03.5-dind
   stage: IMG_PUSH
   script:
-    - apk update && apk add bash && apk add sudo
-    - apk add python3
-    - pip3 install awscli
-    - alias apt-get=apk
     - ./ci/scripts/jobs/image_push.sh
   rules:
     # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
 
 staging_plan:
-  image: docker:19.03.5
-  services:
-    - docker:19.03.5-dind
   stage: STG_PLAN
   script:
     - ./ci/scripts/jobs/staging_plan.sh
