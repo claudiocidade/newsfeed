@@ -1,5 +1,6 @@
 import { IArticleModel } from "../models/IArticleModel";
 import { IPostModel } from "../models/IPostModel";
+import { ICommentModel } from "../models/ICommentModel";
 
 export class ArticleService {
   public async create(): Promise<boolean> {
@@ -7,11 +8,13 @@ export class ArticleService {
   }
 
   public async list(): Promise<IArticleModel[]> {
-    return await (await this.getPostList()).map(item => {
-      return {
-        ...item,
-        comments: await this.getPostList()
-      } as IArticleModel
+    let comments:ICommentModel[] = await this.getPostList();
+    return (await this.getPostList()).map(post => { 
+      return { 
+        ...post,
+        headline: 'Lorem Ipsum Dolor Sit Amet.',
+        comments: comments
+      } 
     });
   }
 
@@ -31,7 +34,7 @@ export class ArticleService {
                'pretium. Nulla dictum urna in ullamcorper lacinia. In hac habitasse ' + 
                'platea dictumst. Cras in egestas dui. Orci varius natoque penatibus ' +
                'et magnis dis parturient montes, nascetur ridiculus mus. Mauris eget ' +
-               'ipsum id lectus sollicitudin efficitur id eu arcu.';
+               'ipsum id lectus sollicitudin efficitur id eu arcu.',
         postedDate: '12 Jan. 2019'
       };
       results.push(item);
