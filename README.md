@@ -17,11 +17,11 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 <img src="docs/2.Article.png" alt="Article"/>
 
 ### As an user, I would like to...
-- [x] 1.1. Access a news feed listing at most 30 words of the 5 most recently published news, together with its date, number of comments and a link so I can read the entire article.
+- [ ] 1.1. Access a news feed listing at most 30 words of the 5 most recently published news, together with its date, number of comments and a link so I can read the entire article.
 - [ ] 1.2. Include comments of my own when accessing the news article in full view.
-- [x] 1.3. Read comments posted by other readers listed by date in descending order.
+- [ ] 1.3. Read comments posted by other readers listed by date in descending order.
 - [ ] 1.4. Delete comments of my own authoring only.
-- [x] 1.5. Be able to return to the main news feed after read the full article and posting comments.
+- [ ] 1.5. Be able to return to the main news feed after read the full article and posting comments.
 - [ ] 1.6. Be warned when my comments exceed 1254 characters before posting them.
 - [ ] 1.7. Be prompted for confirmation before removing a comment from an article.
 
@@ -54,3 +54,5 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 - [x] 4.13. A bastion server I will use to get access to resources in the private subnet.
 - [x] 4.14. An ECR repository to which docker images will be pushed to.
 - [ ] 4.15. A Route 53 Zone configured for a short and friendly custom DNS.
+
+destroy.
