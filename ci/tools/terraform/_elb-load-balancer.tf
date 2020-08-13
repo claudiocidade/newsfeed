@@ -19,7 +19,7 @@ resource "aws_lb_target_group" "api" {
   port        = 8000
 
   health_check {
-    path = "/"
+    path = "/articles/hello"
   }
 
   depends_on = [aws_lb.api]

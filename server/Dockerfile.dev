@@ -1,0 +1,15 @@
+FROM node:alpine
+
+# set working directory
+WORKDIR /app
+
+# install app dependencies
+COPY package.json ./
+
+# installing dependencies
+RUN yarn install --silent
+
+# add app
+COPY . ./
+
+CMD ["yarn", "start"]
