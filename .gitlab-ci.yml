@@ -15,7 +15,6 @@ before_script:
     - chmod +x $(find ./ci -name *.sh)
     - apk update
     - apk add bash sudo python3
-    - ./ci/tools/terraform/install.sh 0.12.21
 
 quality_check:
   stage: QUALITY_CHECK
@@ -27,6 +26,7 @@ quality_check:
 validate_formation:
   stage: QUALITY_CHECK
   script:
+    - ./ci/tools/terraform/install.sh 0.12.21
     - ./ci/scripts/jobs/formation_check.sh
   rules:
     # - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(master|feature/.*|hotfix/.*|production)$/ || $CI_COMMIT_BRANCH =~ /^(master|feature/.*|hotfix/.*|production)$/'
@@ -41,6 +41,7 @@ image_push:
 staging_plan:
   stage: STG_PLAN
   script:
+    - ./ci/tools/terraform/install.sh 0.12.21
     - ./ci/scripts/jobs/staging_plan.sh
   rules:
     # - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
@@ -48,6 +49,7 @@ staging_plan:
 staging_apply:
   stage: STG_APPLY
   script:
+    - ./ci/tools/terraform/install.sh 0.12.21
     - ./ci/scripts/jobs/staging_apply.sh
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^(master|production)$/'
@@ -62,6 +64,7 @@ prodution_plan:
 production_apply:
   stage: PRD_APPLY
   script:
+    - ./ci/tools/terraform/install.sh 0.12.21
     - ./ci/scripts/jobs/production_apply.sh
   rules:
     - if: '$CI_COMMIT_BRANCH == "production"'
@@ -69,6 +72,7 @@ production_apply:
 staging_destroy:
   stage: DESTROY
   script:
+    - ./ci/tools/terraform/install.sh 0.12.21
     - ./ci/scripts/jobs/destroy.sh
   rules:
     - if: '$CI_COMMIT_BRANCH == "destroy"'
