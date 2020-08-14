@@ -2,13 +2,14 @@ version: '3.3'
 
 services:
   client:
+    stdin_open: true
     environment:
-      - APP_PORT=3000
+      - LISTEN_PORT=8000
     build: 
       dockerfile: Dockerfile.dev
       context: ./client
     ports:
-      - "3000:3000"
+      - "8000:8000"
     volumes: 
       # In this line I'm telling docker-compose
       # to use the node_modules folder INSIDE the
@@ -24,12 +25,12 @@ services:
       - ./client:/app
   server:
     environment:
-      - APP_PORT=4000
+      - APP_PORT=9000
     build: 
       dockerfile: Dockerfile.dev
       context: ./server
     ports:
-      - "4000:4000"
+      - "9000:9000"
     volumes: 
       # In this line I'm telling docker-compose
       # to use the node_modules folder INSIDE the

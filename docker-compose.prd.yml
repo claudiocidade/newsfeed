@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  database:
+    image: postgres:10-alpine
+    environment: 
+      - POSTGRES_USER=newsfeed
+      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_DB=newsfeed
+    ports:
+      - 5432:5432
+  client:
+    stdin_open: true
+    environment:
+      - LISTEN_PORT=8000
+    build: 
+      dockerfile: Dockerfile
+      context: ./client
+    ports:
+      - "8000:8000"
+  server:
+    environment:
+      - APP_PORT=9000
+    build: 
+      dockerfile: Dockerfile
+      context: ./server
+    ports:
+      - "9000:9000"

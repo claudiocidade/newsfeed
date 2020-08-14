@@ -18,7 +18,7 @@ jobs:
     - stage: QUALITY_CHECK
       # MAKE SURE THE CODE IS WELL WRITTEN AND PASS TESTS
       script: ./ci/scripts/jobs/quality_check.sh
-      if: 'type IN (pull_request)'
+      if: 'type IN (pull_request) and branch =~ /^(master|production)$/'
       
     - stage: FORMATION_CHECK
       # MAKE SURE FORMATION SCRIPTS ARE VALID AND WELLFORMED/FORMATED
@@ -28,17 +28,17 @@ jobs:
     - stage: IMG_PUSH
       # PUSH UPDATED DOCKER IMAGES TO ECR REPOSITORIES
       script: ./ci/scripts/jobs/image_push.sh
-      if: 'type IN (push) and branch =~ /^(master|production)$/'
+      if: 'branch =~ /^(master|production)$/'
 
     - stage: STG_PLAN
       # VALIDATE CLOUD FORMATION PLAN FOR STAGING
       script: ./ci/scripts/jobs/staging_plan.sh
-      if: 'type IN (push) and branch =~ /^(master|production)$/'
+      if: 'branch =~ /^(master|production)$/'
 
     - stage: STG_APPLY
       # APPLY CLOUD FORMATION PLAN FOR STAGING
       script: ./ci/scripts/jobs/staging_apply.sh
-      if: 'type IN (push) and branch =~ /^(master|production)$/'
+      if: 'branch =~ /^(master|production)$/'
 
     - stage: PRD_PLAN
       # VALIDATE CLOUD FORMATION PLAN FOR PRODUCTION
