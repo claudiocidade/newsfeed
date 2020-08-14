@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/claudiocidade/newsfeed.svg?branch=master)](https://travis-ci.org/claudiocidade/newsfeed)
-
-[![pipeline status](https://gitlab.com/claudiocidade/newsfeed/badges/master/pipeline.svg)](https://gitlab.com/claudiocidade/newsfeed/-/commits/master)
+[![Build Status](https://travis-ci.org/claudiocidade/newsfeed.svg?branch=master)](https://travis-ci.org/claudiocidade/newsfeed) [![pipeline status](https://gitlab.com/claudiocidade/newsfeed/badges/master/pipeline.svg)](https://gitlab.com/claudiocidade/newsfeed/-/commits/master)
 
 # NEWS FEED (e2e-full-stack)
 A simple news feed full-stack application project. This is meant to demonstrate the complete end-to-end development workflow from conception all the way to delivery.
@@ -54,5 +52,3 @@ A simple news feed full-stack application project. This is meant to demonstrate 
 - [x] 4.13. A bastion server I will use to get access to resources in the private subnet.
 - [x] 4.14. An ECR repository to which docker images will be pushed to.
 - [ ] 4.15. A Route 53 Zone configured for a short and friendly custom DNS.
-
-destroy.
