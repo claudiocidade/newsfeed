@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/claudiocidade/newsfeed.svg?branch=master)](https://travis-ci.org/claudiocidade/newsfeed)
-
-[![pipeline status](https://gitlab.com/claudiocidade/newsfeed/badges/master/pipeline.svg)](https://gitlab.com/claudiocidade/newsfeed/-/commits/master)
+[![Build Status](https://travis-ci.org/claudiocidade/newsfeed.svg?branch=master)](https://travis-ci.org/claudiocidade/newsfeed) [![pipeline status](https://gitlab.com/claudiocidade/newsfeed/badges/master/pipeline.svg)](https://gitlab.com/claudiocidade/newsfeed/-/commits/master)
 
 # NEWS FEED (e2e-full-stack)
 A simple news feed full-stack application project. This is meant to demonstrate the complete end-to-end development workflow from conception all the way to delivery.

@@ -1,8 +1,0 @@
-FROM postgres:10-alpine
-
-# During initialization it also sets up a default database,
-# admin user and password. These are initial values used 
-# when no other environment specific information is found.
-ENV POSTGRES_USER newsfeed
-ENV POSTGRES_PASSWORD changeme
-ENV POSTGRES_DB newsfeed

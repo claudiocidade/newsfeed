@@ -2,19 +2,19 @@ FROM node:alpine AS builder
 
 # set working directory
 WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
+# copy only the dependencies
+# installation blueprint
 COPY package.json ./
-
-RUN yarn install --silent
-RUN yarn add global react-scripts@3.4.1 --silent
-
-# add app
+# download and install dependencies
+# in a node_modules folder of its own
+RUN yarn install
+# copy everything else now 
+# that node_modules has been 
+# generated inside the container 
 COPY . ./
-
+# generated the compiled version
+# in a build/ directory that is
+# going to be hosted by NGINX
 RUN yarn build
 
 FROM nginxinc/nginx-unprivileged:alpine
@@ -22,16 +22,18 @@ FROM nginxinc/nginx-unprivileged:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
 COPY ./nginx/default.conf.tpl /etc/nginx/default.conf.tpl
 
-ENV LISTEN_PORT=8000
+ENV PORT=8000
+ENV LISTEN_PORT=${PORT}
 ENV APP_HOST=app
 ENV APP_PORT=9000
 
 USER root
 
+# this is where I make sure the NGINX 
+# configuration is set up using the same 
+# environment variables used everywhere else
 RUN envsubst < /etc/nginx/default.conf.tpl > /etc/nginx/conf.d/default.conf
 
 USER nginx
-
-EXPOSE 8000 8080
 
 CMD ["nginx", "-g", "daemon off;"]

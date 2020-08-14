@@ -2,17 +2,17 @@ FROM node:alpine
 
 # set working directory
 WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
+# copy only the dependencies
+# installation blueprint
 COPY package.json ./
-
-RUN yarn install --silent
-RUN yarn add global react-scripts@3.4.1 --silent
-
-# add app
+# download and install dependencies
+# in a node_modules folder of its own
+RUN yarn install
+# copy everything else now 
+# that node_modules has been 
+# generated inside the container 
 COPY . ./
-
+# since this is not hosted by nginx
+# just yet, use yarn to start serving
+# the application with live updates
 CMD ["yarn", "start"]
